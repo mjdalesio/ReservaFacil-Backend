@@ -7,6 +7,11 @@ const restaurantSchema = new Schema({
   cuisine: { type: String, trim: true },
   rating: { type: Number, min: 0, max: 5, default: 0 },
   priceRange: { type: String, enum: ["$", "$$", "$$$", "$$$$"], default: "$$" },
+  imageUrl: { type: String, trim: true }, // <-- nuevo para poner las imagenes en la solapa restaurantes
+   location: {
+    lat: { type: Number },
+    lng: { type: Number }
+  }, // esto agrega ubicacion en el mapa al front 
   createdAt: { type: Date, default: Date.now },
 });
 

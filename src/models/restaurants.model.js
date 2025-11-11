@@ -9,13 +9,13 @@ const createRestaurant = async (restaurant) => {
     }
 };
 
-const getRestaurants = async () => {
-    try {
-        const restaurants = await Restaurant.find({}).sort({ createdAt: -1 });
-        return restaurants;
-    } catch (error) {
-        throw error;
-    }
+const getRestaurants = async (filter = {}) => {
+  try {
+    const restaurants = await Restaurant.find(filter).sort({ createdAt: -1 });
+    return restaurants;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const getRestaurantById = async (id) => {

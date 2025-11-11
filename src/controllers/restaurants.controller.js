@@ -25,7 +25,20 @@ const getRestaurantById = async (req, res) => {
 
 const getAllRestaurants = async (req, res) => {
   try {
-    const restaurants = await RestaurantService.getAllRestaurants();
+    const { term } = req.query;
+
+    let filter = {};
+    if (term) {
+      // Búsqueda  por nombre o tipo de comida
+      filter = {
+        $or: [
+          { name: { $regex: term, $options: "i" } },
+          { cuisine: { $regex: term, $options: "i" } },
+        ],
+      };
+    }
+
+    const restaurants = await RestaurantService.getAllRestaurants(filter);
     res.send(restaurants);
   } catch (error) {
     res.status(500).send({ error: error.message });

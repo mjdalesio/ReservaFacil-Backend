@@ -6,8 +6,8 @@ const postRestaurant = async (data) => {
   return restaurant;
 };
 
-const getAllRestaurants = async () => {
-  const restaurants = await RestaurantModel.getRestaurants();
+const getAllRestaurants = async (filter = {}) => {
+  const restaurants = await RestaurantModel.getRestaurants(filter);
   return restaurants;
 };
 
